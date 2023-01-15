@@ -13,6 +13,7 @@
 		A41C6EB2297463960084EB34 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A41C6EB1297463960084EB34 /* Preview Assets.xcassets */; };
 		A41C6EBB297463D80084EB34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A41C6EBA297463D80084EB34 /* GoogleService-Info.plist */; };
 		A41C6EBE297464720084EB34 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A41C6EBD297464720084EB34 /* FirebaseAuth */; };
+		A41C6EC02974657B0084EB34 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41C6EBF2974657B0084EB34 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A41C6EAE297463960084EB34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A41C6EB1297463960084EB34 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A41C6EBA297463D80084EB34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A41C6EBF2974657B0084EB34 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		A41C6EB9297463A80084EB34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A41C6EBF2974657B0084EB34 /* LoginView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41C6EC02974657B0084EB34 /* LoginView.swift in Sources */,
 				A41C6EAD297463960084EB34 /* ContentView.swift in Sources */,
 				A41C6EAB297463960084EB34 /* SocialMediaCloneApp.swift in Sources */,
 			);
