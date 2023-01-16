@@ -11,6 +11,8 @@ struct LoginView: View {
     // MARK: User Details
     @State var emailID: String = ""
     @State var password: String = ""
+    // MARK: View Properties
+    @State var createAccount: Bool = false
     
     
     var body: some View {
@@ -56,13 +58,17 @@ struct LoginView: View {
                 Text("Don't have a account?")
                     .foregroundColor(.gray)
                 Button("Register Now") {
-                    
+                    createAccount.toggle()
                 }
                 .fontWeight(.bold)
                 .foregroundColor(.black)
             }
             .font(.callout)
             .vAling(.bottom)
+            // MARK:  Resgister View VIA Sheet
+            .fullScreenCover(isPresented: $createAccount) {
+                RegisterView()
+            }
             
         }
         .vAling(.top)
