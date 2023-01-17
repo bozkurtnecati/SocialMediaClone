@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import Firebase
 
 struct RegisterView: View {
     // MARK: User Details

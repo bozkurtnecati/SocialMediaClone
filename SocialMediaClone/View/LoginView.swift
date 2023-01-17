@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     // MARK: User Details
@@ -13,7 +14,8 @@ struct LoginView: View {
     @State var password: String = ""
     // MARK: View Properties
     @State var createAccount: Bool = false
-    
+    @State var showError: Bool = false
+    @State var errorMessage: String = ""
     
     var body: some View {
         VStack(spacing: 10.0) {
@@ -34,15 +36,13 @@ struct LoginView: View {
                     .textContentType(.password)
                     .border(1, .gray.opacity(0.5))
                 
-                Button("Reset Password?", action: {})
+                Button("Reset Password?", action: resetPasword)
                     .font(.callout)
                     .fontWeight(.medium)
                     .tint(.black)
                     .hAling(.trailing)
                 
-                Button {
-                    
-                } label: {
+                Button (action: loginUser){
                     // MARK: Login button
                     Text("Sign in")
                         .foregroundColor(.white)
@@ -65,15 +65,52 @@ struct LoginView: View {
             }
             .font(.callout)
             .vAling(.bottom)
-            // MARK:  Resgister View VIA Sheet
-            .fullScreenCover(isPresented: $createAccount) {
-                RegisterView()
-            }
-            
         }
         .vAling(.top)
         .padding(15)
+        // MARK:  Resgister View VIA Sheet
+        .fullScreenCover(isPresented: $createAccount) {
+            RegisterView()
+        }
+        // MARK: Dispilaying Alert
+        .alert(errorMessage, isPresented: $showError, actions: {})
     }
+    
+    func loginUser() {
+        Task {
+            do{
+                // With the help Swift Concurrency Auth can be done with single line
+                try await Auth.auth().signIn(withEmail: emailID, password: password)
+                print("User Found")
+                
+            }catch{
+                await setError(error)
+            }
+        }
+    }
+    
+    func resetPasword() {
+        Task {
+            do{
+                // With the help Swift Concurrency Auth can be done with single line
+                try await Auth.auth().sendPasswordReset(withEmail: emailID)
+                print("Link Sent")
+                
+            }catch{
+                await setError(error)
+            }
+        }
+    }
+    
+    // MARK: Displaying Errors VIA Alert
+    func setError(_ error: Error) async {
+        // MARK: UI Must be Updated on Main Thread
+        await MainActor.run(body: {
+            errorMessage = error.localizedDescription
+            showError.toggle()
+        })
+    }
+    
 }
 
 struct LoginView_Previews: PreviewProvider {
