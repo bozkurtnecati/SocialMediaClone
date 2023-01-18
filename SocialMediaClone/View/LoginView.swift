@@ -16,7 +16,7 @@ struct LoginView: View {
     @State var createAccount: Bool = false
     @State var showError: Bool = false
     @State var errorMessage: String = ""
-    
+    @State var isLoading: Bool = false
     var body: some View {
         VStack(spacing: 10.0) {
             Text("Lets Sing you in")
@@ -68,6 +68,9 @@ struct LoginView: View {
         }
         .vAling(.top)
         .padding(15)
+        .overlay(content: {
+            LoadingView(show: $isLoading)
+        })
         // MARK:  Resgister View VIA Sheet
         .fullScreenCover(isPresented: $createAccount) {
             RegisterView()
@@ -77,6 +80,7 @@ struct LoginView: View {
     }
     
     func loginUser() {
+        isLoading = true
         Task {
             do{
                 // With the help Swift Concurrency Auth can be done with single line
@@ -108,6 +112,7 @@ struct LoginView: View {
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
+            isLoading = false
         })
     }
     
@@ -122,6 +127,13 @@ struct LoginView_Previews: PreviewProvider {
 // MARK: View extensions for UI Building
 
 extension View {
+    // MARK: Disabling with Opacity
+    func disableWithOpacity(_ condition: Bool) -> some View {
+        self
+            .disabled(condition)
+            .opacity(condition ? 0.6 : 1)
+    }
+    
     func hAling (_ alingment: Alignment) -> some View {
         self
             .frame(maxWidth: .infinity, alignment: alingment)
