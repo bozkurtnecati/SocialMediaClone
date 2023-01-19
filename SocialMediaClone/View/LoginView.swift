@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 
 struct LoginView: View {
     // MARK: User Details
@@ -17,6 +19,11 @@ struct LoginView: View {
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
+    // MARK: UserDefaults
+    @AppStorage("user_profile_url") var profileURL: URL?
+    @AppStorage("user_name") var userNameStored: String = ""
+    @AppStorage("user_UID") var userUID: String = ""
+    @AppStorage("log_status") var logStatus: Bool = false
     var body: some View {
         VStack(spacing: 10.0) {
             Text("Lets Sing you in")
@@ -81,16 +88,31 @@ struct LoginView: View {
     
     func loginUser() {
         isLoading = true
+        closeKeyboard()
         Task {
             do{
                 // With the help Swift Concurrency Auth can be done with single line
                 try await Auth.auth().signIn(withEmail: emailID, password: password)
                 print("User Found")
-                
+                try await fetchUser()
             }catch{
                 await setError(error)
             }
         }
+    }
+    
+    // MARK: If user if found then Fetching user data from Firestore
+    func fetchUser() async throws {
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
+        // MARK: UI Updating Must be Run ON Main Thread
+        await MainActor.run(body: {
+            // Settigs UserDefaults Data and Changing App's Auth Status
+            userUID = userID
+            userNameStored = user.username
+            profileURL = user.userProfileURL
+            logStatus = true
+        })
     }
     
     func resetPasword() {
@@ -127,6 +149,11 @@ struct LoginView_Previews: PreviewProvider {
 // MARK: View extensions for UI Building
 
 extension View {
+    // MARK: Closing All Actice Keyboards
+    func closeKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
     // MARK: Disabling with Opacity
     func disableWithOpacity(_ condition: Bool) -> some View {
         self
