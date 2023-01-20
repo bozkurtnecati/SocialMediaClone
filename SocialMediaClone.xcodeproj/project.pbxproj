@@ -20,6 +20,7 @@
 		A4223E072977ED570011201F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A4223E062977ED570011201F /* FirebaseStorage */; };
 		A4223E092977FB650011201F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E082977FB650011201F /* User.swift */; };
 		A4223E0B29781BB60011201F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E0A29781BB60011201F /* LoadingView.swift */; };
+		A4223E10297AE90B0011201F /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E0F297AE90B0011201F /* View+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A41C6EC1297566650084EB34 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A4223E082977FB650011201F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A4223E0A29781BB60011201F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		A4223E0F297AE90B0011201F /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +102,9 @@
 		A41C6EB9297463A80084EB34 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A41C6EBF2974657B0084EB34 /* LoginView.swift */,
-				A41C6EC1297566650084EB34 /* RegisterView.swift */,
+				A4223E0E297AE8F10011201F /* Helpers */,
+				A4223E0D297AE26A0011201F /* MainView */,
+				A4223E0C297AE2590011201F /* Login */,
 				A4223E0A29781BB60011201F /* LoadingView.swift */,
 			);
 			path = View;
@@ -112,6 +115,30 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A4223E0C297AE2590011201F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A41C6EBF2974657B0084EB34 /* LoginView.swift */,
+				A41C6EC1297566650084EB34 /* RegisterView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		A4223E0D297AE26A0011201F /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		A4223E0E297AE8F10011201F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A4223E0F297AE90B0011201F /* View+Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +224,7 @@
 				A41C6EC02974657B0084EB34 /* LoginView.swift in Sources */,
 				A41C6EC2297566650084EB34 /* RegisterView.swift in Sources */,
 				A41C6EAD297463960084EB34 /* ContentView.swift in Sources */,
+				A4223E10297AE90B0011201F /* View+Extensions.swift in Sources */,
 				A4223E092977FB650011201F /* User.swift in Sources */,
 				A41C6EAB297463960084EB34 /* SocialMediaCloneApp.swift in Sources */,
 				A4223E0B29781BB60011201F /* LoadingView.swift in Sources */,
