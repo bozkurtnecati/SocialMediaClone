@@ -16,12 +16,14 @@ struct MainView: View {
                     Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled")
                     Text("Post's")
                 }
-            Text("Profile View")
+            ProfileView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Profile")
                 }
         }
+        // Changing Tab Lable Tint to Black
+        .tint(.black)
     }
 }
 
