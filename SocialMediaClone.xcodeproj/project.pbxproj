@@ -25,6 +25,8 @@
 		A4223E14297AF1FD0011201F /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E13297AF1FD0011201F /* ProfileView.swift */; };
 		A4223E16297BE2A70011201F /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E15297BE2A70011201F /* ReusableProfileContent.swift */; };
 		A4223E19297BE6CF0011201F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A4223E18297BE6CF0011201F /* SDWebImageSwiftUI */; };
+		A4223E1B297D73CE0011201F /* CreateNewPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E1A297D73CE0011201F /* CreateNewPost.swift */; };
+		A4223E1D297D74D00011201F /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4223E1C297D74D00011201F /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		A4223E11297AEB6D0011201F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A4223E13297AF1FD0011201F /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A4223E15297BE2A70011201F /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; tabWidth = 4; };
+		A4223E1A297D73CE0011201F /* CreateNewPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewPost.swift; sourceTree = "<group>"; };
+		A4223E1C297D74D00011201F /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				A4223E082977FB650011201F /* User.swift */,
+				A4223E1C297D74D00011201F /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 				A4223E11297AEB6D0011201F /* MainView.swift */,
 				A4223E13297AF1FD0011201F /* ProfileView.swift */,
 				A4223E15297BE2A70011201F /* ReusableProfileContent.swift */,
+				A4223E1A297D73CE0011201F /* CreateNewPost.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -237,10 +243,12 @@
 				A41C6EC02974657B0084EB34 /* LoginView.swift in Sources */,
 				A4223E14297AF1FD0011201F /* ProfileView.swift in Sources */,
 				A4223E16297BE2A70011201F /* ReusableProfileContent.swift in Sources */,
+				A4223E1D297D74D00011201F /* Post.swift in Sources */,
 				A4223E12297AEB6D0011201F /* MainView.swift in Sources */,
 				A41C6EC2297566650084EB34 /* RegisterView.swift in Sources */,
 				A41C6EAD297463960084EB34 /* ContentView.swift in Sources */,
 				A4223E10297AE90B0011201F /* View+Extensions.swift in Sources */,
+				A4223E1B297D73CE0011201F /* CreateNewPost.swift in Sources */,
 				A4223E092977FB650011201F /* User.swift in Sources */,
 				A41C6EAB297463960084EB34 /* SocialMediaCloneApp.swift in Sources */,
 				A4223E0B29781BB60011201F /* LoadingView.swift in Sources */,
