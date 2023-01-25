@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 
 struct ReusablePostView: View {
-    @Binding var post: [Post]
+    @Binding var posts: [Post]
     // View Properties
     @State var isFetching: Bool = true
     var body: some View {
@@ -20,7 +20,7 @@ struct ReusablePostView: View {
                     ProgressView()
                         .padding(.top,30)
                 }else{
-                    if post.isEmpty{
+                    if posts.isEmpty{
                         // No Post's Found on Firestore
                         Text("No Post's Found")
                             .font(.caption)
@@ -37,12 +37,12 @@ struct ReusablePostView: View {
         .refreshable {
             // Scroll to Refresh
             isFetching = true
-            post = []
+            posts = []
             await fetchPost()
         }
         .task {
             // Fetching For One Time
-            guard post.isEmpty else{return}
+            guard posts.isEmpty else{return}
             await fetchPost()
         }
     }
@@ -50,11 +50,20 @@ struct ReusablePostView: View {
     // Displaying Fetched Post's
     @ViewBuilder
     func Posts()-> some View{
-        ForEach(post){ post in
+        ForEach(posts){ post in
             PostCardView(post: post) { updatedPost in
-                
+                // Updating Post in the Array
+                if let index = posts.firstIndex(where: { post in
+                    post.id == updatedPost.id
+                }){
+                    posts[index].likedIDs = updatedPost.likedIDs
+                    posts[index].dislikedIDs = updatedPost.dislikedIDs
+                }
             } onDelete: {
-                
+                // Removing Post in the Array
+                withAnimation(.easeInOut(duration: 0.25)){
+                    posts.removeAll{post.id == $0.id}
+                }
             }
             
             Divider()
@@ -74,7 +83,7 @@ struct ReusablePostView: View {
                 try? doc.data(as: Post.self)
             }
             await MainActor.run(body: {
-                post = fetchedPosts
+                posts = fetchedPosts
                 isFetching = false
             })
         }catch{

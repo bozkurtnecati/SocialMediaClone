@@ -12,7 +12,7 @@ struct PostView: View {
     @State private var createNewPost: Bool = false
     var body: some View {
         NavigationStack{
-            ReusablePostView(post: $recentsPosts)
+            ReusablePostView(posts: $recentsPosts)
                 .hAling(.center).vAling(.center)
                 .overlay(alignment: .bottomTrailing) {
                     Button{
