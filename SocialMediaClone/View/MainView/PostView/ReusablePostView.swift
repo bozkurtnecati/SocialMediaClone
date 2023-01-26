@@ -10,9 +10,11 @@ import Firebase
 import FirebaseFirestore
 
 struct ReusablePostView: View {
+    var basedOnUID: Bool = false
+    var uid: String = ""
     @Binding var posts: [Post]
     // View Properties
-    @State var isFetching: Bool = true
+    @State private var isFetching: Bool = true
     // Pagination
     @State private var paginationDoc: QueryDocumentSnapshot?
     var body: some View {
@@ -38,8 +40,12 @@ struct ReusablePostView: View {
         }
         .refreshable {
             // Scroll to Refresh
+            // Disabling Refresh for UID based Post's
+            guard !basedOnUID else{return}
             isFetching = true
             posts = []
+            // Resetting Pagination Doc
+            paginationDoc = nil
             await fetchPost()
         }
         .task {
@@ -97,6 +103,12 @@ struct ReusablePostView: View {
                     .limit(to: 20)
             }
             
+            // New Query For UID Based Document Fetch
+            // Simply Filter the Post's Which is not belongs to this UID
+            if basedOnUID{
+                query = query
+                    .whereField("userUID", isEqualTo: uid)
+            }
             let docs = try await query.getDocuments()
             let fetchedPosts = docs.documents.compactMap { doc -> Post? in
                 try? doc.data(as: Post.self)
