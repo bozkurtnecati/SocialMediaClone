@@ -1,4 +1,4 @@
 # SocialMediaClone
 
-Based on the video below, it was created to improve myself.
+Based on this video, it was created to improve myself.
 https://youtu.be/-pAQcPolruw
